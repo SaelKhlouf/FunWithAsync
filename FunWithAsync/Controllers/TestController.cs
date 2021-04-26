@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FunWithAsync.Models;
+using FunWithAsync.Utils;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace FunWithAsync.Controllers
@@ -10,20 +10,24 @@ namespace FunWithAsync.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
+        /// <summary>
+        /// Performs a synchronous delay for specific number of seconds.
+        /// </summary>
         [HttpGet("v1/sync")]
-        public string GetSync()
+        public ThreadsInfo GetSync([Required] int seconds)
         {
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
-            return "hello sync";
+            Helpers.delaySync(seconds);
+            return Helpers.getThreadsInfo();
         }
 
+        /// <summary>
+        /// Performs an asynchronous delay for specific number of seconds.
+        /// </summary>
         [HttpGet("v1/async")]
-        public async Task<string> GetAsync()
+        public async Task<ThreadsInfo> GetAsync([Required] int seconds)
         {
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            return "hello async";
+            await Helpers.delayAsync(seconds);
+            return Helpers.getThreadsInfo();
         }
-
-
     }
 }

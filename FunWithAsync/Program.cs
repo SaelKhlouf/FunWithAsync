@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace FunWithAsync
 {
@@ -13,6 +9,9 @@ namespace FunWithAsync
     {
         public static void Main(string[] args)
         {
+            int numberOfMachineProcessors = Environment.ProcessorCount;
+            ThreadPool.SetMaxThreads(numberOfMachineProcessors, numberOfMachineProcessors);
+
             CreateHostBuilder(args).Build().Run();
         }
 
