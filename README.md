@@ -1,7 +1,7 @@
 Asynchronous Programming with .NET Core Web API
 =======================
 
-This repository showcase the scalability of Asynchronous Programming, using .NET Core. I have made two end-points;
+This repository showcases the scalability of Asynchronous Programming, using .NET Core. I have made two end-points;
 * /sync: represents a synchronous operation that needs "seconds".
 * /async: represents an asynchronous operation that needs "seconds".
 
